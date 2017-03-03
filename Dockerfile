@@ -1,8 +1,6 @@
 # based on https://registry.hub.docker.com/u/samtstern/android-sdk/dockerfile/ with openjdk-8
 FROM openjdk:8
 
-MAINTAINER FUJI Goro <g.psy.va+github@gmail.com>
-
 ENV DEBIAN_FRONTEND noninteractive
 
 # Install dependencies
@@ -12,7 +10,7 @@ RUN dpkg --add-architecture i386 && \
     apt-get clean
 
 # Download and untar SDK
-ENV ANDROID_SDK_URL http://dl.google.com/android/android-sdk_r24.4.1-linux.tgz
+ENV ANDROID_SDK_URL https://dl.google.com/android/repository/tools_r25.2.3-linux.zip
 RUN curl -L "${ANDROID_SDK_URL}" | tar --no-same-owner -xz -C /usr/local
 ENV ANDROID_HOME /usr/local/android-sdk-linux
 ENV ANDROID_SDK /usr/local/android-sdk-linux
