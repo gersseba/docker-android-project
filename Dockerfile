@@ -1,7 +1,7 @@
 FROM ubuntu:16.04
 MAINTAINER Sebastian Gerstenberg <sebastian.gerstenberg@gmail.com>
 
-ENV VERSION_SDK_TOOLS "25.2.2"
+ENV VERSION_SDK_TOOLS "25.2.3"
 ENV VERSION_BUILD_TOOLS "25.0.0"
 ENV VERSION_TARGET_SDK "25"
 
@@ -35,4 +35,7 @@ RUN mkdir -p $ANDROID_HOME/licenses/ \
   && echo "8933bad161af4178b1185d1a37fbf41ea5269c55" > $ANDROID_HOME/licenses/android-sdk-license \
   && echo "84831b9409646a918e30573bab4c9c91346d8abd" > $ANDROID_HOME/licenses/android-sdk-preview-license
 
-RUN (while [ 1 ]; do sleep 5; echo y; done) | ${ANDROID_HOME}/tools/android update sdk -u -a -t ${SDK_PACKAGES}
+RUN do sleep 5
+RUN echo y | ${ANDROID_HOME}/tools/android update sdk --no-ui --all --filter "android-21,android-22"
+RUN echo y | ${ANDROID_HOME}/tools/bin/sdkmanager "ndk-bundle"
+RUN echo y | ${ANDROID_HOME}/tools/bin/sdkmanager "$(/usr/local/android-sdk-linux/tools/bin/sdkmanager --list | grep -E -o 'cmake;[0-9]+\.[0-9]+\.[0-9]+\)"
