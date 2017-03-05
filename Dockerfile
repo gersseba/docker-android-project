@@ -37,5 +37,4 @@ RUN mkdir -p $ANDROID_HOME/licenses/ \
 
 RUN sleep 5
 RUN echo y | ${ANDROID_HOME}/tools/android update sdk --no-ui --all --filter "android-21,android-22"
-RUN echo y | ${ANDROID_HOME}/tools/bin/sdkmanager "ndk-bundle"
-RUN echo y | ${ANDROID_HOME}/tools/bin/sdkmanager "$(/usr/local/android-sdk-linux/tools/bin/sdkmanager --list | grep -E -o 'cmake;[0-9]+\.[0-9]+\.[0-9]+\)"
+RUN echo y | ${ANDROID_HOME}/tools/bin/sdkmanager "ndk-bundle" "cmake;3.6.3155560"
